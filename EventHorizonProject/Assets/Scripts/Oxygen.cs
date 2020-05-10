@@ -45,7 +45,7 @@ public class Oxygen : MonoBehaviour
             RefillOxygen();
         }
         else
-            mm.useActivateMaterial = false;
+            mm.TurnOnActivateMaterial(false);
 
         oxygenBar.value = OxygenBarValue();
     }
@@ -54,7 +54,7 @@ public class Oxygen : MonoBehaviour
     {
         if (currentOxygen < maxOxygen)
         {
-            mm.useActivateMaterial = true;
+            mm.TurnOnActivateMaterial(true);
             currentOxygen += refillMultiplier * Time.deltaTime;
         }
     }

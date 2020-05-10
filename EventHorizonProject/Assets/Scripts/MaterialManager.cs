@@ -4,31 +4,33 @@ using UnityEngine;
 
 public class MaterialManager : MonoBehaviour
 {
-    public GameObject ObjectToManage;
-    public Material NormalMaterial;
-    public Material ActivateMaterial;
-
-    public bool useActivateMaterial = false;
+    public List<MaterialManagerItem> objectsToManage;
+  
+    private void Start()
+    {
+        for (int i = 0; i < objectsToManage.Count - 1; i++)
+        {
+            objectsToManage[i].index = i;
+        }
+    }
 
     //might be useful in the future
     //public DelayController delayController;
 
-
-    // Start is called before the first frame update
-    void Start()
+    //control whether or not the activate material is on for all items in the list
+    public void TurnOnActivateMaterial(bool shouldUseActiveMaterial)
     {
-        
+        for (int i = 0; i < objectsToManage.Count; i++)
+        {
+            objectsToManage[i].useActivateMaterial = shouldUseActiveMaterial;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    //control whether or not the activate material is on for one item at index i
+    public void TurnOnActivateMaterial(bool shouldUseActiveMaterial, int i)
     {
-        if (useActivateMaterial)
-            ObjectToManage.GetComponent<Renderer>().material = ActivateMaterial;
-        //add more if statements here to use different materials
-        else
-            ObjectToManage.GetComponent<Renderer>().material = NormalMaterial;
-
-
+        objectsToManage[i].useActivateMaterial = shouldUseActiveMaterial;
     }
+
+
 }
