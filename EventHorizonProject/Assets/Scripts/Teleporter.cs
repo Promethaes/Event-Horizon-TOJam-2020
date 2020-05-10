@@ -7,6 +7,7 @@ public class Teleporter: MonoBehaviour
     public Transform targetLocation;
     GameObject targetToTP;
     public DelayController delayController;
+    public bool keepVelocityOnExit = true;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,6 +22,7 @@ public class Teleporter: MonoBehaviour
     public void TeleportObject(GameObject target)
     {
         target.transform.position = targetLocation.position;
-        target.GetComponent<Rigidbody>().velocity = new Vector3(target.GetComponent<Rigidbody>().velocity.x, -target.GetComponent<Rigidbody>().velocity.y, target.GetComponent<Rigidbody>().velocity.z);
+        if(keepVelocityOnExit)
+            target.GetComponent<Rigidbody>().velocity = new Vector3(target.GetComponent<Rigidbody>().velocity.x, -target.GetComponent<Rigidbody>().velocity.y, target.GetComponent<Rigidbody>().velocity.z);
     }
 }
