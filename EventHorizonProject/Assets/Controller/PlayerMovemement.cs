@@ -71,12 +71,12 @@ public class PlayerMovemement : MonoBehaviour
     #region Triggers
     private void RightTrigger_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        Teleporter1.transform.position = new Vector3(Player2Entity.transform.position.x + 3, Player2Entity.transform.position.y, Player2Entity.transform.position.z);
+        Teleporter1.transform.position = Player2Entity.transform.position + Player2Entity.transform.forward * 3;
     }
 
     private void LeftTrigger_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        Teleporter1.transform.position = new Vector3(Player2Entity.transform.position.x + 3, Player2Entity.transform.position.y, Player2Entity.transform.position.z);
+        Teleporter2.transform.position = Player2Entity.transform.position + Player2Entity.transform.forward * 3;
     }
     #endregion
     #region Face Buttons
