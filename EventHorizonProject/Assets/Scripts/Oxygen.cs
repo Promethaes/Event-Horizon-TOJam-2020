@@ -5,13 +5,21 @@ using UnityEngine.UI;
 
 public class Oxygen : MonoBehaviour
 {
+    //controls 
+    public float jumpForce = 10f; //No pun intended
+    ControllerInput inputActions;
+    bool aButtonPress = false;
+    public Slider oxygenBar;
+
     //Oxygen stuff
     [SerializeField] float maxOxygen;
     [SerializeField] float currentOxygen;
     public bool hasOxygen;
-    public Slider oxygenBar;
+    //public Slider oxygenBar;
     public float refillMultiplier = 5f;
     public float drainRate;
+
+    public MaterialManager mm;
 
     //Tether stuff
     [SerializeField] GameObject playerEnt1;
@@ -19,11 +27,28 @@ public class Oxygen : MonoBehaviour
     private float playerEntDistance;
     public float closenessCheck; //rename later i dunno what to call it lol
 
+    void Awake()
+    {
+        inputActions = new ControllerInput();
+        inputActions.PlayerControllerInput.aButton.started += AButton_started;
+        inputActions.PlayerControllerInput.aButton.canceled += AButton_canceled;
+
+    }
+
+    private void AButton_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        aButtonPress = false;
+    }
+
+    private void AButton_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        aButtonPress = true;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        currentOxygen = maxOxygen;
-        DrainOxygen(maxOxygen/2.0f);//debug feature
+        currentOxygen = maxOxygen/2.0f;
     }
 
     // Update is called once per frame
@@ -40,6 +65,17 @@ public class Oxygen : MonoBehaviour
         {
             RefillOxygen();
         }
+        else
+            mm.TurnOnActivateMaterial(false);
+
+        if (aButtonPress)
+        {
+            DrainOxygen(drainRate);
+            if (hasOxygen)
+            {
+                playerEnt1.GetComponent<Rigidbody>().AddForce(new Vector3(0f, jumpForce, 0f));
+            }
+        }
 
         oxygenBar.value = OxygenBarValue();
     }
@@ -48,6 +84,7 @@ public class Oxygen : MonoBehaviour
     {
         if (currentOxygen < maxOxygen)
         {
+            mm.TurnOnActivateMaterial(true);
             currentOxygen += refillMultiplier * Time.deltaTime;
         }
     }
@@ -60,6 +97,8 @@ public class Oxygen : MonoBehaviour
         }
         else
         {
+            hasOxygen = false;
+            print("dead boi");
             //death n stuff
         }
     }
@@ -68,5 +107,15 @@ public class Oxygen : MonoBehaviour
     {
         float calculatedAmount = Mathf.Clamp((currentOxygen / maxOxygen), 0, 1);
         return calculatedAmount;
+    }
+    //Controller related
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Disable();
     }
 }
