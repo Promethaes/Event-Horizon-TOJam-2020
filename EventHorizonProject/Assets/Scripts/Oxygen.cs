@@ -9,7 +9,7 @@ public class Oxygen : MonoBehaviour
     public float jumpForce = 10f; //No pun intended
     ControllerInput inputActions;
     bool aButtonPress = false;
-    
+    public Slider oxygenBar;
 
     //Oxygen stuff
     [SerializeField] float maxOxygen;
@@ -48,7 +48,7 @@ public class Oxygen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentOxygen = maxOxygen;
+        currentOxygen = maxOxygen/2.0f;
     }
 
     // Update is called once per frame
@@ -77,7 +77,7 @@ public class Oxygen : MonoBehaviour
             }
         }
 
-        //oxygenBar.value = OxygenBarValue();
+        oxygenBar.value = OxygenBarValue();
     }
 
     private void RefillOxygen()
