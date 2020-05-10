@@ -15,6 +15,8 @@ public class Oxygen : MonoBehaviour
     public float refillMultiplier = 5f;
     public float drainRate;
 
+    public MaterialManager mm;
+
     //Tether stuff
     [SerializeField] GameObject playerEnt1;
     [SerializeField] GameObject playerEnt2;
@@ -42,6 +44,8 @@ public class Oxygen : MonoBehaviour
         {
             RefillOxygen();
         }
+        else
+            mm.TurnOnActivateMaterial(false);
 
         oxygenBar.value = OxygenBarValue();
     }
@@ -50,6 +54,7 @@ public class Oxygen : MonoBehaviour
     {
         if (currentOxygen < maxOxygen)
         {
+            mm.TurnOnActivateMaterial(true);
             currentOxygen += refillMultiplier * Time.deltaTime;
         }
     }
