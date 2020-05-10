@@ -6,14 +6,17 @@ public class PlayerMovemement : MonoBehaviour
 {
     public GameObject Player1Entity;
     public GameObject Player2Entity;
+    public GameObject Teleporter1;
+    public GameObject Teleporter2;
     //used to orient player axis
     public Camera GameCamera;
+
+    public float MoveForce = 500f;
 
     ControllerInput inputActions;
 
     Vector2 leftStick;
     Vector2 rightStick;
-    bool aPressed = false;
     
 
     void Awake()
@@ -30,8 +33,8 @@ public class PlayerMovemement : MonoBehaviour
         inputActions.PlayerControllerInput.xButton.performed += XButton_performed;
         inputActions.PlayerControllerInput.yButton.performed += YButton_performed;
 
-        inputActions.PlayerControllerInput.leftTrigger.performed += LeftTrigger_performed;
-        inputActions.PlayerControllerInput.rightTrigger.performed += RightTrigger_performed;
+        inputActions.PlayerControllerInput.leftTrigger.started += LeftTrigger_started;
+        inputActions.PlayerControllerInput.rightTrigger.started += RightTrigger_started;
 
         inputActions.PlayerControllerInput.leftBumper.performed += LeftBumper_performed;
         inputActions.PlayerControllerInput.rightBumper.performed += RightBumper_performed;
@@ -66,14 +69,14 @@ public class PlayerMovemement : MonoBehaviour
     }
     #endregion
     #region Triggers
-    private void RightTrigger_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void RightTrigger_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-       
+        Teleporter1.transform.position = new Vector3(Player2Entity.transform.position.x + 3, Player2Entity.transform.position.y, Player2Entity.transform.position.z);
     }
 
-    private void LeftTrigger_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void LeftTrigger_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-       
+        Teleporter1.transform.position = new Vector3(Player2Entity.transform.position.x + 3, Player2Entity.transform.position.y, Player2Entity.transform.position.z);
     }
     #endregion
     #region Face Buttons
@@ -108,13 +111,13 @@ public class PlayerMovemement : MonoBehaviour
         if ((leftStick.x > 0.5 || leftStick.x < -0.5) || (leftStick.y > 0.5 || leftStick.y < -0.5))
         {
             Player1Entity.transform.LookAt(new Vector3(Player1Entity.transform.position.x + leftStick.x, Player1Entity.transform.position.y, Player1Entity.transform.position.z + leftStick.y));
-            Player1Entity.GetComponent<Rigidbody>().AddForce(new Vector3(500f * leftStick.x * Time.deltaTime, 0f, 500f * leftStick.y * Time.deltaTime));
+            Player1Entity.GetComponent<Rigidbody>().AddForce(new Vector3(MoveForce * leftStick.x * Time.deltaTime, 0f, MoveForce * leftStick.y * Time.deltaTime));
         }
         //player 2
         if ((rightStick.x > 0.5 || rightStick.x < -0.5) || (rightStick.y > 0.5 || rightStick.y < -0.5))
         {
             Player2Entity.transform.LookAt(new Vector3(Player2Entity.transform.position.x + rightStick.x, Player2Entity.transform.position.y, Player2Entity.transform.position.z + rightStick.y));
-            Player2Entity.GetComponent<Rigidbody>().AddForce(new Vector3(500f * rightStick.x * Time.deltaTime, 0f, 500f * rightStick.y * Time.deltaTime));
+            Player2Entity.GetComponent<Rigidbody>().AddForce(new Vector3(MoveForce * rightStick.x * Time.deltaTime, 0f, MoveForce * rightStick.y * Time.deltaTime));
         }
     }
 

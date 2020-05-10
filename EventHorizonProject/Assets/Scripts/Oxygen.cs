@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class Oxygen : MonoBehaviour
 {
     //controls 
+    public float jumpForce = 10f; //No pun intended
     ControllerInput inputActions;
     bool aButtonPress = false;
+    
 
     //Oxygen stuff
     [SerializeField] float maxOxygen;
@@ -71,7 +73,7 @@ public class Oxygen : MonoBehaviour
             DrainOxygen(drainRate);
             if (hasOxygen)
             {
-                playerEnt1.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 20f, 0f));
+                playerEnt1.GetComponent<Rigidbody>().AddForce(new Vector3(0f, jumpForce, 0f));
             }
         }
 

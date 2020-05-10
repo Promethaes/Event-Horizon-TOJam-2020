@@ -245,7 +245,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player1Entity: {fileID: 1406860312}
   Player2Entity: {fileID: 2063313084}
+  Teleporter1: {fileID: 0}
+  Teleporter2: {fileID: 0}
   GameCamera: {fileID: 0}
+  MoveForce: 250.3
 --- !u!114 &137899095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,10 +261,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1688861dd148c0f40a7f65322d01e314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpForce: 10
   maxOxygen: 100
   currentOxygen: 25
   hasOxygen: 1
-  oxygenBar: {fileID: 0}
   refillMultiplier: 5
   drainRate: 0
   mm: {fileID: 1098300050}
@@ -1126,6 +1129,7 @@ GameObject:
   - component: {fileID: 1406860315}
   - component: {fileID: 1406860314}
   - component: {fileID: 1406860313}
+  - component: {fileID: 1406860320}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -1253,6 +1257,19 @@ Transform:
   m_Father: {fileID: 137899096}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -105.22, z: 0}
+--- !u!65 &1406860320
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406860312}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9193507, y: 2.223308, z: 0.98734033}
+  m_Center: {x: 0.0000038146973, y: -0.05703503, z: -0.0147830155}
 --- !u!1001 &1503712048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1634,6 +1651,7 @@ GameObject:
   - component: {fileID: 2063313087}
   - component: {fileID: 2063313086}
   - component: {fileID: 2063313085}
+  - component: {fileID: 2063313092}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1761,3 +1779,16 @@ Transform:
   m_Father: {fileID: 137899096}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2063313092
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063313084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.060517, y: 2.223308, z: 1.91935}
+  m_Center: {x: -0.051375315, y: -0.057036936, z: 0.0000038146973}
