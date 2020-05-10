@@ -773,10 +773,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1688861dd148c0f40a7f65322d01e314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpForce: 10
+  oxygenBar: {fileID: 986093306}
   maxOxygen: 100
   currentOxygen: 25
   hasOxygen: 1
-  oxygenBar: {fileID: 986093306}
   refillMultiplier: 5
   drainRate: 0
   mm: {fileID: 739755462}
@@ -814,7 +815,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player1Entity: {fileID: 778398223}
   Player2Entity: {fileID: 263770948}
+  Teleporter1: {fileID: 0}
+  Teleporter2: {fileID: 0}
   GameCamera: {fileID: 1796624978}
+  MoveForce: 500
 --- !u!1 &1563044688
 GameObject:
   m_ObjectHideFlags: 0
