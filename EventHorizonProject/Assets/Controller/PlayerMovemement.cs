@@ -93,26 +93,17 @@ public class PlayerMovemement : MonoBehaviour
     }
     private void AButton_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        aPressed = true;
+
     }
     private void AButton_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        aPressed = false;
+       
     }
     #endregion
-    private void JetpackOxygen()
-    {
-        if (aPressed)
-        {
-            //Alright so here is the moving bit
-            Player1Entity.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 20f, 0f));
-        }
-    }
 
 
     void FixedUpdate()
     {
-        JetpackOxygen();
         //player 1
         if ((leftStick.x > 0.5 || leftStick.x < -0.5) || (leftStick.y > 0.5 || leftStick.y < -0.5))
         {

@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class Oxygen : MonoBehaviour
 {
+    //controls 
     ControllerInput inputActions;
+    bool aButtonPress = false;
 
     //Oxygen stuff
     [SerializeField] float maxOxygen;
     [SerializeField] float currentOxygen;
     public bool hasOxygen;
-    public Slider oxygenBar;
+    //public Slider oxygenBar;
     public float refillMultiplier = 5f;
     public float drainRate;
 
@@ -21,11 +23,28 @@ public class Oxygen : MonoBehaviour
     private float playerEntDistance;
     public float closenessCheck; //rename later i dunno what to call it lol
 
+    void Awake()
+    {
+        inputActions = new ControllerInput();
+        inputActions.PlayerControllerInput.aButton.started += AButton_started;
+        inputActions.PlayerControllerInput.aButton.canceled += AButton_canceled;
+
+    }
+
+    private void AButton_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        aButtonPress = false;
+    }
+
+    private void AButton_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        aButtonPress = true;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         currentOxygen = maxOxygen;
-        DrainOxygen(maxOxygen/2.0f);//debug feature
     }
 
     // Update is called once per frame
@@ -43,7 +62,16 @@ public class Oxygen : MonoBehaviour
             RefillOxygen();
         }
 
-        oxygenBar.value = OxygenBarValue();
+        if (aButtonPress)
+        {
+            DrainOxygen(drainRate);
+            if (hasOxygen)
+            {
+                playerEnt1.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 20f, 0f));
+            }
+        }
+
+        //oxygenBar.value = OxygenBarValue();
     }
 
     private void RefillOxygen()
@@ -62,6 +90,8 @@ public class Oxygen : MonoBehaviour
         }
         else
         {
+            hasOxygen = false;
+            print("dead boi");
             //death n stuff
         }
     }
@@ -70,5 +100,15 @@ public class Oxygen : MonoBehaviour
     {
         float calculatedAmount = Mathf.Clamp((currentOxygen / maxOxygen), 0, 1);
         return calculatedAmount;
+    }
+    //Controller related
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Disable();
     }
 }
