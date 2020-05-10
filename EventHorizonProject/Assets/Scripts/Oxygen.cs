@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Oxygen : MonoBehaviour
 {
+    ControllerInput inputActions;
+
     //Oxygen stuff
     [SerializeField] float maxOxygen;
     [SerializeField] float currentOxygen;

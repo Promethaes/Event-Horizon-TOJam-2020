@@ -18,6 +18,7 @@ public class PlayerMovemement : MonoBehaviour
 
     void Awake()
     {
+        //all button inputs going to methods / 
         inputActions = new ControllerInput();
 
         inputActions.PlayerControllerInput.Player1Moving.performed += ctx => leftStick = ctx.ReadValue<Vector2>();
@@ -103,6 +104,7 @@ public class PlayerMovemement : MonoBehaviour
     {
         if (aPressed)
         {
+            //Alright so here is the moving bit
             Player1Entity.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 20f, 0f));
         }
     }
