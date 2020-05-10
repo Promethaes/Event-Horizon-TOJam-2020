@@ -15,6 +15,7 @@ public class Oxygen : MonoBehaviour
     public float refillMultiplier = 5f;
     public float drainRate;
 
+
     //Tether stuff
     [SerializeField] GameObject playerEnt1;
     [SerializeField] GameObject playerEnt2;
