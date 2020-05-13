@@ -769,7 +769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d5d5f7887d1da4990fd4ca9cafd4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameSceneName: GiuliaScene
+  GameSceneName: GameScene
 --- !u!114 &2024520131
 MonoBehaviour:
   m_ObjectHideFlags: 0
