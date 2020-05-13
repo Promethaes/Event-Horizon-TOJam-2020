@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class WeightScript : MonoBehaviour
 {
+   
     public GameObject PillarObject;
     List<GameObject> objectsOnMe = new List<GameObject>();
 
+    //vectors to constantly lerp
     Vector3 originalPos;
-    Vector3 downOne;
-    Vector3 downTwo;
-    Vector3 downThree;
     Vector3 currentLerpingPos;
 
+    //lerp param
     float u = 0.0f;
 
     // Start is called before the first frame update
@@ -45,7 +45,11 @@ public class WeightScript : MonoBehaviour
 
             if (objectsOnMe.Count < 3)
             {
+                //add the object to the list and set its parent to the pillar
                 objectsOnMe.Add(collision.gameObject);
+                objectsOnMe[objectsOnMe.Count - 1].transform.SetParent(PillarObject.transform);
+
+                //reset u and lower the pillar's destination point
                 currentLerpingPos.y -= 0.5f;
                 u = 0.0f;
                 originalPos = PillarObject.transform.position;
@@ -63,6 +67,7 @@ public class WeightScript : MonoBehaviour
             {
                 if (objectsOnMe[i] == collision.gameObject)
                 {
+                    objectsOnMe[i].transform.parent = null;
                     objectsOnMe.RemoveAt(i);
                     break;
                 }
@@ -71,6 +76,8 @@ public class WeightScript : MonoBehaviour
             currentLerpingPos.y += 0.5f;
             u = 0.0f;
             originalPos = PillarObject.transform.position;
+            
+
 
         }
     }
