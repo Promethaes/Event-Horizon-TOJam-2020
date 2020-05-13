@@ -323,6 +323,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Movable Cliff
       objectReference: {fileID: 0}
+    - target: {fileID: 2534866581884222612, guid: 8e1c5cc42681bd0479af041c52c94fd0,
+        type: 3}
+      propertyPath: m_Name
+      value: UpPillar
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e1c5cc42681bd0479af041c52c94fd0, type: 3}
 --- !u!1 &171449994 stripped
@@ -357,7 +362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d6808b282d32f41acc1c10ce421617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PillarObject: {fileID: 0}
+  PillarObject: {fileID: 171449994}
+  DownPillarObject: {fileID: 1716995829}
 --- !u!1 &194478187
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,17 +678,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 2bada60983e44b749a7b94d9fd7d3326,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.307
+      value: -1.239
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2bada60983e44b749a7b94d9fd7d3326,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.053
+      value: 4.517
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2bada60983e44b749a7b94d9fd7d3326,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.56
+      value: -1.238
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2bada60983e44b749a7b94d9fd7d3326,
         type: 3}
@@ -1012,7 +1018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478752292}
   m_LocalRotation: {x: 0, y: -0.7945206, z: 0, w: 0.6072373}
-  m_LocalPosition: {x: 5.56, y: -0.05, z: -7.4}
+  m_LocalPosition: {x: 25.19, y: 19.62, z: 10.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1507317863}
@@ -1562,7 +1568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831305390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.23, y: -0.8, z: -6.51}
+  m_LocalPosition: {x: 26.1, y: 21.59, z: 12.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1507317863}
@@ -2431,6 +2437,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Movable Cliff (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534866581884222612, guid: 8e1c5cc42681bd0479af041c52c94fd0,
+        type: 3}
+      propertyPath: m_Name
+      value: DownPillar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e1c5cc42681bd0479af041c52c94fd0, type: 3}

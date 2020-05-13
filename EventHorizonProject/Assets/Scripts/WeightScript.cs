@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class WeightScript : MonoBehaviour
 {
-   
+
     public GameObject PillarObject;
+    public GameObject DownPillarObject;
     List<GameObject> objectsOnMe = new List<GameObject>();
 
     //vectors to constantly lerp
     Vector3 originalPos;
     Vector3 currentLerpingPos;
+
+    Vector3 downPillarOriginalPos;
+    Vector3 downCurrentLerpingPos;
 
     //lerp param
     float u = 0.0f;
@@ -20,6 +24,9 @@ public class WeightScript : MonoBehaviour
     {
         originalPos = PillarObject.transform.position;
         currentLerpingPos = originalPos;
+
+        downPillarOriginalPos = DownPillarObject.transform.position;
+        downCurrentLerpingPos = downPillarOriginalPos;
     }
 
     // Update is called once per frame
@@ -29,7 +36,9 @@ public class WeightScript : MonoBehaviour
         {
             u += Time.deltaTime;
             PillarObject.transform.position = Vector3.Lerp(originalPos, currentLerpingPos, u);
+            DownPillarObject.transform.position = Vector3.Lerp(downPillarOriginalPos, downCurrentLerpingPos, u);
         }
+
 
     }
 
@@ -51,8 +60,10 @@ public class WeightScript : MonoBehaviour
 
                 //reset u and lower the pillar's destination point
                 currentLerpingPos.y -= 0.5f;
+                downCurrentLerpingPos.y += 0.5f;
                 u = 0.0f;
                 originalPos = PillarObject.transform.position;
+                downPillarOriginalPos = DownPillarObject.transform.position;
             }
 
         }
@@ -74,10 +85,10 @@ public class WeightScript : MonoBehaviour
             }
 
             currentLerpingPos.y += 0.5f;
+            downCurrentLerpingPos.y -= 0.5f;
             u = 0.0f;
             originalPos = PillarObject.transform.position;
-            
-
+            downPillarOriginalPos = DownPillarObject.transform.position;
 
         }
     }
