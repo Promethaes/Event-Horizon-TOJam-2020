@@ -121,12 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &217985375 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4713683492781364974, guid: 4a57f3c7f163e3d4b8dd607f5727838d,
-    type: 3}
-  m_PrefabInstance: {fileID: 4713683492820470126}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &263770948
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,12 +479,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9193505, y: 2.223308, z: 0.9873402}
   m_Center: {x: 0, y: -0.05703503, z: -0.014783014}
---- !u!1 &809509554 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4713683494422638972, guid: 4a57f3c7f163e3d4b8dd607f5727838d,
-    type: 3}
-  m_PrefabInstance: {fileID: 4713683492820470126}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &986093304
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,8 +805,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player1Entity: {fileID: 778398223}
   Player2Entity: {fileID: 263770948}
-  Teleporter1: {fileID: 809509554}
-  Teleporter2: {fileID: 217985375}
+  Teleporter1: {fileID: 8238959357492510271}
+  Teleporter2: {fileID: 8238959357492510270}
   GameCamera: {fileID: 1796624978}
   MoveForce: 500
 --- !u!1 &1563044688
@@ -1378,3 +1366,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a4e32f02fa9fbb49a259fb56a3455cf, type: 3}
+--- !u!1 &8238959357492510270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8238959357952473059, guid: 2a4e32f02fa9fbb49a259fb56a3455cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 8238959357492510269}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8238959357492510271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8238959356620119369, guid: 2a4e32f02fa9fbb49a259fb56a3455cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 8238959357492510269}
+  m_PrefabAsset: {fileID: 0}
