@@ -805,8 +805,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player1Entity: {fileID: 778398223}
   Player2Entity: {fileID: 263770948}
-  Teleporter1: {fileID: 8238959357492510271}
-  Teleporter2: {fileID: 8238959357492510270}
+  Teleporter1: {fileID: 8238959357492510270}
+  Teleporter2: {fileID: 8238959357492510271}
   GameCamera: {fileID: 1796624978}
   MoveForce: 500
 --- !u!1 &1563044688
