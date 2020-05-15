@@ -22,7 +22,13 @@ public class Teleporter: MonoBehaviour
     public void TeleportObject(GameObject target)
     {
         target.transform.position = targetLocation.position;
-        if(keepVelocityOnExit)
+        if (keepVelocityOnExit)
             target.GetComponent<Rigidbody>().velocity = new Vector3(target.GetComponent<Rigidbody>().velocity.x, -target.GetComponent<Rigidbody>().velocity.y, target.GetComponent<Rigidbody>().velocity.z);
+        else
+        {
+            target.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            target.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
+        }
     }
 }

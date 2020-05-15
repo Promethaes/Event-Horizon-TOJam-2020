@@ -66,7 +66,10 @@ public class Oxygen : MonoBehaviour
             RefillOxygen();
         }
         else
+        {
             mm.TurnOnActivateMaterial(false);
+            DrainOxygen(drainRate);
+        }
 
         if (aButtonPress)
         {

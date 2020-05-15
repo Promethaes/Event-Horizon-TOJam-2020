@@ -8,6 +8,7 @@ public class PlayerMovemement : MonoBehaviour
     public GameObject Player2Entity;
     public GameObject Teleporter1;
     public GameObject Teleporter2;
+    public float maxMagnitude = 100.0f;
     //used to orient player axis
     public Camera GameCamera;
 
@@ -71,8 +72,9 @@ public class PlayerMovemement : MonoBehaviour
     #region Triggers
     private void RightTrigger_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        Teleporter1.transform.position = Player1Entity.transform.position + new Vector3(0.0f, 2.0f, 0.0f);
-        Teleporter2.transform.position = Player2Entity.transform.position + Player2Entity.transform.forward * 3;
+        Teleporter1.transform.position = Player1Entity.transform.position + new Vector3(0.0f, Player1Entity.transform.localScale.y, 0.0f);
+        Teleporter2.transform.position = Player2Entity.transform.position + Player2Entity.transform.forward*0.5f;
+        Teleporter2.transform.position += new Vector3(0.0f, 0.5f, 0.0f);
     }
 
     private void LeftTrigger_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -111,14 +113,34 @@ public class PlayerMovemement : MonoBehaviour
         if ((leftStick.x > 0.5 || leftStick.x < -0.5) || (leftStick.y > 0.5 || leftStick.y < -0.5))
         {
             Player1Entity.transform.LookAt(new Vector3(Player1Entity.transform.position.x + leftStick.x, Player1Entity.transform.position.y, Player1Entity.transform.position.z + leftStick.y));
-            Player1Entity.GetComponent<Rigidbody>().AddForce(new Vector3(MoveForce * leftStick.x * Time.deltaTime, 0f, MoveForce * leftStick.y * Time.deltaTime));
+
+            var force = new Vector3(MoveForce * leftStick.x * Time.deltaTime, 0f, MoveForce * leftStick.y * Time.deltaTime);
+
+            if((Player1Entity.GetComponent<Rigidbody>().velocity + force).magnitude >= maxMagnitude)
+            {
+                force = force.normalized * maxMagnitude;
+            }
+
+            Player1Entity.GetComponent<Rigidbody>().AddForce(force);
         }
         //player 2
         if ((rightStick.x > 0.5 || rightStick.x < -0.5) || (rightStick.y > 0.5 || rightStick.y < -0.5))
         {
             Player2Entity.transform.LookAt(new Vector3(Player2Entity.transform.position.x + rightStick.x, Player2Entity.transform.position.y, Player2Entity.transform.position.z + rightStick.y));
-            Player2Entity.GetComponent<Rigidbody>().AddForce(new Vector3(MoveForce * rightStick.x * Time.deltaTime, 0f, MoveForce * rightStick.y * Time.deltaTime));
+
+            var force = new Vector3(MoveForce * rightStick.x * Time.deltaTime, 0f, MoveForce * rightStick.y * Time.deltaTime);
+
+            if ((Player2Entity.GetComponent<Rigidbody>().velocity + force).magnitude >= maxMagnitude)
+            {
+                force = force.normalized * maxMagnitude;
+            }
+
+            Player2Entity.GetComponent<Rigidbody>().AddForce(force);
+
         }
+
+        Player1Entity.GetComponent<Rigidbody>().rotation.Set(0.0f, Player1Entity.GetComponent<Rigidbody>().rotation.y, 0.0f, Player1Entity.GetComponent<Rigidbody>().rotation.w);
+        Player2Entity.GetComponent<Rigidbody>().rotation.Set(0.0f, Player2Entity.GetComponent<Rigidbody>().rotation.y, 0.0f, Player2Entity.GetComponent<Rigidbody>().rotation.w);
     }
 
     private void OnEnable()
