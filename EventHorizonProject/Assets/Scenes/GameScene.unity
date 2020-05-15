@@ -2123,6 +2123,11 @@ PrefabInstance:
       propertyPath: zuccForceScalar
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6671013006240080089, guid: 2a4e32f02fa9fbb49a259fb56a3455cf,
+        type: 3}
+      propertyPath: ZuccBoxMass
+      value: 1e+11
+      objectReference: {fileID: 0}
     - target: {fileID: 7861381018249115283, guid: 2a4e32f02fa9fbb49a259fb56a3455cf,
         type: 3}
       propertyPath: m_IsTrigger

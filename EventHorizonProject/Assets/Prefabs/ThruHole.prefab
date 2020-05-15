@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7569151532474286330}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.3001313, y: 6.3001313, z: 6.3001313}
+  m_LocalScale: {x: 6.440755, y: 6.440755, z: 6.440755}
   m_Children: []
   m_Father: {fileID: 8238959356487095280}
   m_RootOrder: 1
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zuccBox: {fileID: 7569151532474286330}
   BHole: {fileID: 8238959356620119369}
-  zuccForceScalar: 1
+  ZuccBoxMass: 1e+11
 --- !u!1 &8238959356487095281
 GameObject:
   m_ObjectHideFlags: 0

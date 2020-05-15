@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class Zucc : MonoBehaviour
 {
     public GameObject zuccBox;
     public GameObject BHole;
-    public float zuccForceScalar = 1.0f;
+    public float ZuccBoxMass = 10.0f;
 
     private void FixedUpdate()
     {
@@ -15,15 +16,20 @@ public class Zucc : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        var temp1 = zuccBox.transform.position - other.gameObject.transform.position;
-        var temp2 = temp1.magnitude;
-        temp1 = temp1.normalized;
-
-        temp1 *= zuccForceScalar;
-        temp1 /= temp2;
-
         if (other.gameObject.GetComponent<Rigidbody>() && other.gameObject.GetComponent<Zuccable>())
-            other.gameObject.GetComponent<Rigidbody>().AddForce(temp1);
+        {
+            float G = (float)(6.67 * Math.Pow(10, -11));
+            float M = ZuccBoxMass;
+            float m = other.gameObject.GetComponent<Rigidbody>().mass;
+            float r = zuccBox.GetComponent<SphereCollider>().radius;
+
+            float result = (G * M * m) / (float)Math.Pow(r, 2.0f);
+
+            Vector3 direction = (zuccBox.transform.position - other.transform.position).normalized;
+            direction *= result;
+
+            other.gameObject.GetComponent<Rigidbody>().AddForce(direction);
+        }
     }
 
 }
